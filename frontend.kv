@@ -1,0 +1,78 @@
+<CameraScreen>:
+    GridLayout:
+        cols: 1
+        padding: 10
+        spacing: 10
+        Camera:
+            id: camera
+            resolution: (640, 480)
+            play: False
+            size_hint_y: 0.8
+            opacity: 0
+
+        Button:
+            id: start
+            text: 'Start Camera'
+            on_press: root.start() if root.ids.camera.play == False else root.stop()
+            size_hint_y: 0.1
+            background_normal: 'images/normal.png'
+            background_down: 'images/down.png'
+
+        Button:
+            id: capture
+            text: 'Capture'
+            size_hint_y: 0.1
+            on_press: root.capture()
+            background_normal: 'images/normal.png'
+            background_down: 'images/down.png'
+
+
+<ImageScreen>:
+    GridLayout:
+        cols: 1
+        padding: 15
+        spacing: 15
+        Image:
+            id: img
+            size_hint_y: 0.7
+
+        Button:
+            text: 'Create Link'
+            on_press: root.create_link()
+            size_hint_y: 0.1
+            background_normal: 'images/normal.png'
+            background_down: 'images/down.png'
+
+        Label:
+            id: label
+            size_hint_y: 0.1
+
+        GridLayout:
+            size_hint_y: 0.1
+            cols: 2
+            Button:
+                text: 'Copy'
+                on_press: root.copy_link()
+                background_normal: 'images/normal.png'
+                background_down: 'images/down.png'
+            Button:
+                text: 'Open'
+                on_press: root.open_link()
+                background_normal: 'images/normal.png'
+                background_down: 'images/down.png'
+
+
+<RootWidget>:
+    canvas.before:
+        Color:
+            rgba:(100/255,155/255,0.4,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    CameraScreen:
+        id: camera_screen
+        name: 'camera_screen'
+
+    ImageScreen:
+        id: image_screen
+        name: 'image_screen'
